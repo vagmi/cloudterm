@@ -1,0 +1,29 @@
+extends ../layout
+block content
+  .container
+    .row-fluild
+      .span1.logo CloudTerm
+      .span6.toolbar
+        form#execform(action="sessions/#{session_id}/exec")
+          span.language
+            select(name='language')
+              option(value='ruby') Ruby
+              option(value='python') Python
+          span.problem
+            select(name='problem')
+              option(value='custom') Custom
+              option(value='one') One
+              option(value='two') Two
+          span#run
+            a.btn.btn-success Run
+              i.icon-play.icon-white 
+    .row-fluid
+      .span6.editor-section
+        #editor(data-session-id="#{session_id}") Code goes here
+      .span6#results Results go here
+  script(src="/javascripts/ace/ace.js")
+  script(src="/javascripts/ace/mode-ruby.js")
+  script(src="/javascripts/ace/theme-idle_fingers.js")
+  script(src="/channel/bcsocket.js")
+  script(src="/share/share.uncompressed.js")
+  script(src="/share/ace.js")
