@@ -37,7 +37,6 @@ if ('development' == app.get('env')) {
 }
 
 app.get('/', routes.index);
-console.log(sessions.showSession);
 app.get('/sessions/new', sessions.newSession);
 app.get('/sessions/:id', sessions.showSession);
 app.post('/sessions/:id/exec', sessions.exec);
