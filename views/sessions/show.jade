@@ -2,8 +2,8 @@ extends ../layout
 block content
   .container-fluid
     .row-fluid
-      .span1.logo $_CloudTerm
-      .span6.toolbar
+      .span2.logo $_CloudTerm
+      .span8.toolbar
         form#execform(action="sessions/#{session_id}/exec")
           span.language
             select(name='language')
@@ -22,6 +22,12 @@ block content
       .span6.editor-section
         #editor(data-session-id="#{session_id}")
       .span6#results
+    .row-fluid.footer
+      .span12 
+        | Share the URL to pair with another person.
+        | Built at 
+        a(href="http://in50hrs.com",target="_blank") in50hrs Chennai 
+        | edition.
   script(src="/socket.io/socket.io.js")
   script(src="/javascripts/ace/ace.js")
   script(src="/javascripts/ace/mode-ruby.js")
