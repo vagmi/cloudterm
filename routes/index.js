@@ -15,13 +15,14 @@ var commentCode = function(code,language) {
 
 exports.problem = function(req,res) {
   var p = req.params.code;
-  var language = req.params.language;
+  var language = req.query.language;
   fs.readFile('problems/'+p+'.txt',function(err,data){
     if(err!=null){
       data="sorry but you are on your own";
     }
+    var responseText=commentCode(data.toString(),language);
     res.setHeader('Content-Type', 'text/plain');
-    res.setHeader('Content-Length', data.length);
-    res.end(commentCode(data.toString()));
+    res.setHeader('Content-Length', responseText.length);
+    res.end(responseText);
   });
 };
