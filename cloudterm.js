@@ -6,16 +6,14 @@
 var express = require('express')
   , routes = require('./routes')
   , collab = require('./collaborate')
+  , socketio = require('socket.io')
   , sessions = require('./routes/sessions')
   , http = require('http')
   , path = require('path');
 
 
-
-
 var app = express();
 collab.createServer(app);
-
 
 // all environments
 app.set('port', process.env.PORT || 3000);
@@ -39,8 +37,8 @@ if ('development' == app.get('env')) {
 app.get('/', routes.index);
 app.get('/sessions/new', sessions.newSession);
 app.get('/sessions/:id', sessions.showSession);
-app.post('/sessions/:id/exec', sessions.exec);
 
-http.createServer(app).listen(app.get('port'), function(){
+var server = http.createServer(app).listen(app.get('port'), function(){
   console.log('Express server listening on port ' + app.get('port'));
 });
+sessions.wireUpSocketIo(server);

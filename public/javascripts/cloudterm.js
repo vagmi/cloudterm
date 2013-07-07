@@ -6,7 +6,8 @@
     return;
   }
   var editor = ace.edit("editor");
-
+  var socket= new io.connect('http://'+window.location.host);
+  
   editor.setReadOnly(true);
   editor.getSession().setUseSoftTabs(true);
   editor.getSession().setTabSize(2);
@@ -14,6 +15,10 @@
   editor.setTheme("ace/theme/idle_fingers");
 
   docName=$editor.data("sessionId");
+
+  socket.on('/results/'+docName,function(data){
+    $("#results").prepend('<pre>'+data.output+'</pre>');
+  });
 
   sharejs.open(docName, 'text', function(error, doc) {
     if (error) {
@@ -32,11 +37,8 @@
   
   $run.on('click',function(evt){
     evt.preventDefault();
-    var url = '/sessions/'+docName+'/exec';
-    console.log(url);
-    $.post(url,$form.serialize(),function(results){
-      $("#results").append(results);
-    });
+    var lang=$("#execform select[name='language']").val();
+    socket.emit('run',{sessionId: docName,language: lang});
   });
 });
 

@@ -9,9 +9,11 @@
     "express": "3.3.3",
     "share": "*",
     "rimraf": "*",
+    "socket.io": "*",
     "request": "*",
     "hat": "*",
     "jade": "*",
+    "redis": "*",
     "stylus": "*"
   }
 }
