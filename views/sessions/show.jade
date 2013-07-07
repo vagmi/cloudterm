@@ -12,16 +12,16 @@ block content
               option(value='node') Javascript
           span.problem
             select(name='problem')
-              option(value='custom') Custom
-              option(value='one') One
-              option(value='two') Two
+              option(value='custom') Choose a problem
+              option(value='beers') 99 Bottles of beer
+              option(value='twelve') Twelve Statements
           span#run
             a.btn.btn-success Run
               i.icon-play.icon-white 
     .row-fluid.editor-row
       .span6.editor-section
-        #editor(data-session-id="#{session_id}") Code goes here
-      .span6#results Results go here
+        #editor(data-session-id="#{session_id}")
+      .span6#results
   script(src="/socket.io/socket.io.js")
   script(src="/javascripts/ace/ace.js")
   script(src="/javascripts/ace/mode-ruby.js")

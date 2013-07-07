@@ -30,6 +30,16 @@
     editor.getSession().setMode(modes[$(this).val()]);
   });
 
+  $("#execform select[name='problem']").change(function(){
+    var problem=$(this).val();
+    var language = $("#execform select[name='language']").val();
+    if(problem!="custom"){
+      $.get("/problems/"+problem,{language:language},function(data){
+        var doc = editor.getSession().getDocument();
+        doc.setValue(data);
+      });
+    }
+  });
   sharejs.open(docName, 'text', function(error, doc) {
     if (error) {
       console.error(error);
