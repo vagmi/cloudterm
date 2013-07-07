@@ -2,7 +2,7 @@ var sharejs = require('share'),
     http = require('http');
 
 exports.options = {
-  db: {type: 'none'},
+  db: {type: 'redis'},
   browserChannel: {cors: '*'},
   auth: function(client, action) {
     // This auth handler rejects any ops bound for docs starting with 'readonly'.
