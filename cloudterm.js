@@ -34,7 +34,7 @@ if ('development' == app.get('env')) {
   app.use(express.errorHandler());
 }
 
-app.get('/', routes.index);
+//app.get('/', routes.index);
 app.get('/sessions/new', sessions.newSession);
 app.get('/sessions/:id', sessions.showSession);
 app.get('/problems/:code', routes.problem);

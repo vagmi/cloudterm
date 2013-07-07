@@ -1,6 +1,12 @@
 .container-fluid {
   margin-top: 20px;
 }
+.logo {
+  margin-top: 10px;
+  font-family: 'Exo', sans-serif;
+  font-size: large;
+  font-weight: bold;
+}
 .toolbar span {
   display: inline-block;
   margin-left: 5px;
