@@ -27,7 +27,7 @@ exports.showSession = function(req,res) {
 var runSession= function(data,io) {
   var session_id=data.sessionId;
   var language=data.language;
-  var extensions = {"ruby":"rb","python":"py"};
+  var extensions = {"ruby":"rb","python":"py", "node":"js"};
   collab.server._events.request.model.getSnapshot(session_id, function(error,obj) {
     var version = obj.v;
     var snapshot = obj.snapshot;

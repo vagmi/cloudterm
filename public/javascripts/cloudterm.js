@@ -5,19 +5,29 @@
   if($editor.length==0) {
     return;
   }
+  docName=$editor.data("sessionId");
+  docHeight =  $(window).height() - $(".editor-row").offset().top - 40;
+  $("#editor").css("height",docHeight+"px");
+  $("#results").css("height",docHeight+"px");
   var editor = ace.edit("editor");
   var socket= new io.connect('http://'+window.location.host);
-  
+  var rubyMode = new (require("ace/mode/ruby").Mode);
+  var pythonMode = new (require("ace/mode/python").Mode);
+  var jsMode = new (require("ace/mode/javascript").Mode);
   editor.setReadOnly(true);
   editor.getSession().setUseSoftTabs(true);
   editor.getSession().setTabSize(2);
-  editor.getSession().setMode(new (require("ace/mode/ruby").Mode));
+  editor.getSession().setMode(rubyMode);
   editor.setTheme("ace/theme/idle_fingers");
 
-  docName=$editor.data("sessionId");
 
   socket.on('/results/'+docName,function(data){
-    $("#results").prepend('<pre>'+data.output+'</pre>');
+    $('<pre>'+data.output+'</pre>').hide().prependTo($("#results")).slideDown();
+  });
+  
+  $("#execform select[name='language']").change(function(){
+    var modes = {"ruby":rubyMode,"python":pythonMode,"node":jsMode};
+    editor.getSession().setMode(modes[$(this).val()]);
   });
 
   sharejs.open(docName, 'text', function(error, doc) {
