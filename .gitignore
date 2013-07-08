@@ -3,3 +3,5 @@ Vagrantfile
 node_modules
 *.tmp
 *.swp
+pids
+logs
