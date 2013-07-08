@@ -5,3 +5,5 @@ node_modules
 *.swp
 pids
 logs
+npm-debug.log
+.forever

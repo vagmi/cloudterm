@@ -1,0 +1,5 @@
+pids/**
+logs/**
+*.swp
+*.bak
+.foreverignore
